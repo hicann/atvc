@@ -24,7 +24,7 @@ else
 fi
 
 ATVC_HOME_DIR=$CURRENT_DIR/../
-TEST_CASE_LIST=$(ls $ATVC_HOME_DIR/examples | grep -v '^run_examples.sh$' | grep -v '^ops_*' | grep -v '^common*' | xargs)
+TEST_CASE_LIST=$(ls $ATVC_HOME_DIR/examples | grep -v '^run_examples.sh$' | grep -v '^ops_*' | grep -v '^common*' | grep -v '^README*' | xargs)
 if [ $# -lt 1 ]; then
     echo "This script requires an input as the test case name. Execution example: 'bash run_examples.sh [$TEST_CASE_LIST]'"
     exit 1
