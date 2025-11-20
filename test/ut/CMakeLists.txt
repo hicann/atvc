@@ -106,6 +106,8 @@ foreach(product_type ${PRODUCT_TYPE_LIST})
 
     target_compile_options(atvc_${product_type}_ut PRIVATE
         -fno-access-control
+        -DCMAKE_C_COMPILER_LAUNCHER=${CCACHE_PROGRAM}
+        -DCMAKE_Cxx_COMPILER_LAUNCHER=${CCACHE_PROGRAM}
     )
 
     target_link_libraries(atvc_${product_type}_ut PRIVATE

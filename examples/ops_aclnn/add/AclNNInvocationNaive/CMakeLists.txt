@@ -57,6 +57,11 @@ add_executable(execute_add_op
     main.cpp
 )
 
+target_compile_options(execute_add_op PRIVATE 
+    -DCMAKE_C_COMPILER_LAUNCHER=${CCACHE_PROGRAM}
+    -DCMAKE_Cxx_COMPILER_LAUNCHER=${CCACHE_PROGRAM}
+)
+
 target_link_libraries(execute_add_op
     ascendcl
     cust_opapi

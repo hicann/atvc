@@ -56,6 +56,10 @@ link_directories(
 add_executable(execute_reduce_sum_op
     main.cpp
 )
+target_compile_options(execute_reduce_sum_op PRIVATE 
+    -DCMAKE_C_COMPILER_LAUNCHER=${CCACHE_PROGRAM}
+    -DCMAKE_Cxx_COMPILER_LAUNCHER=${CCACHE_PROGRAM}
+)
 
 target_link_libraries(execute_reduce_sum_op
     ascendcl

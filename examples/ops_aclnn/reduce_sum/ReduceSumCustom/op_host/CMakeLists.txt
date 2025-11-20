@@ -29,6 +29,8 @@ add_library(cust_op_proto SHARED
 target_compile_definitions(cust_op_proto PRIVATE OP_PROTO_LIB)
 target_compile_options(cust_op_proto PRIVATE
         -fvisibility=hidden
+        -DCMAKE_C_COMPILER_LAUNCHER=${CCACHE_PROGRAM}
+        -DCMAKE_Cxx_COMPILER_LAUNCHER=${CCACHE_PROGRAM}
 )
 if(ENABLE_CROSS_COMPILE)
     target_link_directories(cust_op_proto PRIVATE
@@ -57,6 +59,8 @@ endif()
 target_compile_definitions(cust_optiling PRIVATE OP_TILING_LIB)
 target_compile_options(cust_optiling PRIVATE
         -fvisibility=hidden
+        -DCMAKE_C_COMPILER_LAUNCHER=${CCACHE_PROGRAM}
+        -DCMAKE_Cxx_COMPILER_LAUNCHER=${CCACHE_PROGRAM}
 )
 target_include_directories(cust_optiling PRIVATE
                             ${ATVC_PATH}
@@ -112,6 +116,8 @@ else()
     target_compile_definitions(cust_op_proto_obj PRIVATE OP_PROTO_LIB)
     target_compile_options(cust_op_proto_obj PRIVATE
                             -fvisibility=hidden
+                            -DCMAKE_C_COMPILER_LAUNCHER=${CCACHE_PROGRAM}
+                            -DCMAKE_Cxx_COMPILER_LAUNCHER=${CCACHE_PROGRAM}
     )
     if(ENABLE_CROSS_COMPILE)
         target_link_directories(cust_op_proto_obj PRIVATE
@@ -132,6 +138,8 @@ else()
     target_compile_definitions(cust_optiling_obj PRIVATE OP_TILING_LIB)
     target_compile_options(cust_optiling_obj PRIVATE 
                         -fvisibility=hidden
+                        -DCMAKE_C_COMPILER_LAUNCHER=${CCACHE_PROGRAM}
+                        -DCMAKE_Cxx_COMPILER_LAUNCHER=${CCACHE_PROGRAM}
     )
     target_include_directories(cust_optiling_obj PRIVATE ${ATVC_PATH})
     if(ENABLE_CROSS_COMPILE)
@@ -150,7 +158,10 @@ else()
                         rt2_registry
                         -Wl,--no-whole-archive
     )
-    target_compile_options(cust_opapi PRIVATE -DLOG_CPP)
+    target_compile_options(cust_opapi PRIVATE 
+    -DCMAKE_C_COMPILER_LAUNCHER=${CCACHE_PROGRAM}
+    -DCMAKE_Cxx_COMPILER_LAUNCHER=${CCACHE_PROGRAM}
+    -DLOG_CPP)
     target_include_directories(cust_opapi INTERFACE ${ATVC_PATH})
     target_include_directories(cust_opapi INTERFACE ${CMAKE_SOURCE_DIR}/build_out/binary/)
     target_link_libraries(cust_opapi PRIVATE intf_pub ascendcl nnopbase cust_optiling_obj cust_op_proto_obj ascend_opregistry ascend_kernels)

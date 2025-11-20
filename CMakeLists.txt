@@ -37,6 +37,12 @@ if(ENABLE_TEST)
   set(COMPILE_OP_MODE "-O0 -g")
 endif()
 
+find_program(CCACHE_PROGRAM ccache)
+if(CCACHE_PROGRAM)
+  set(CMAKE_C_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
+  set(CMAKE_Cxx_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
+endif()
+
 # Cmake Compile配置
 set(CMAKE_CXX_STANDARD 17 CACHE STRING "c++17 is needed for this project")
 include(cmake/dependencies.cmake)
