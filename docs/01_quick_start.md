@@ -104,13 +104,13 @@ git clone https://gitcode.com/cann/atvc.git
 在开源仓根目录执行下列命令之一，将依次批跑tests目录下的用例，得到结果日志，用于看护编译是否正常。
 
 ```bash
-bash build.sh -t
+bash build.sh -u
 ```
 
 或
 
 ```bash
-bash build.sh --test
+bash build.sh --utest
 ```
 
 ### UT测试显示覆盖率
@@ -121,7 +121,7 @@ bash build.sh --test
 - 执行命令
 
 ```bash
-bash build.sh --test --cov
+bash build.sh --utest --cov
 ```
 
 ## 样例运行验证

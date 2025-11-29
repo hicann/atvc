@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env csh
+# Perform pre-check for atvc package
 # -----------------------------------------------------------------------------------------------------------
 # Copyright (c) 2025 Huawei Technologies Co., Ltd.
 # This program is free software, you can redistribute it and/or modify it under the terms and conditions of
@@ -9,32 +10,20 @@
 # See LICENSE in the root of the software repository for the full text of the License.
 # -----------------------------------------------------------------------------------------------------------
 
-MIN_PIP_VERSION=19
-PYTHON_VERSION=3.7.5
-FILE_NOT_EXIST="0x0080"
+set MIN_PIP_VERSION=19
+set PYTHON_VERSION=3.7.5
 
-log() {
-    local content cur_date
-    content=$(echo "$@" | cut -d" " -f2-)
-    cur_date="$(date +'%Y-%m-%d %H:%M:%S')"
-    echo "[ATVC] [$cur_date] [$1]: $content"
-}
+set version=`pip3 --version | cut -d" " -f2 | cut -d"." -f1`
+if (${version} < ${MIN_PIP_VERSION}) then
+    echo "pip3 version is lower than ${MIN_PIP_VERSION}"
+endif
 
-log "INFO" "ATVC do pre check started."
-
-log "INFO" "Check pip version."
-which pip3 > /dev/null 2>&1
-if [ $? -ne 0 ]; then
-    log "WARNING" "\033[33mpip3 is not found.\033[0m"
-fi
-
-log "INFO" "Check python version."
-curpath="$(dirname ${BASH_SOURCE:-$0})"
-install_dir="$(realpath $curpath/..)"
-common_interface=$(realpath $install_dir/script*/common_interface.sh)
-if [ -f "$common_interface" ]; then
-    . "$common_interface"
-    py_version_check
-fi
-
-log "INFO" "ATVC do pre check finished."
+set python_version=`python3 --version | cut -d" " -f2`
+foreach num (1 2 3)
+    set version_num=`echo ${python_version} | cut -d"." -f${num}`
+    set min_version_num=`echo ${PYTHON_VERSION} | cut -d"." -f${num}`
+    if (${version_num} < ${min_version_num}) then
+        echo "python version ${python_version} is lower than ${PYTHON_VERSION}."
+        break
+    endif
+end

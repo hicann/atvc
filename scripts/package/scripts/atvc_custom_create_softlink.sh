@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+# Perform custom create softlink script for atvc package
 # -----------------------------------------------------------------------------------------------------------
 # Copyright (c) 2025 Huawei Technologies Co., Ltd.
 # This program is free software, you can redistribute it and/or modify it under the terms and conditions of
@@ -10,14 +11,9 @@
 # -----------------------------------------------------------------------------------------------------------
 
 curpath=$(dirname $(readlink -f "$0"))
-SCENE_FILE="${curpath}""/../scene.info"
-ATVC_COMMON="${curpath}""/atvc_common.sh"
 common_func_path="${curpath}/common_func.inc"
-. "${ATVC_COMMON}"
+
 . "${common_func_path}"
-# init arch 
-architecture=$(uname -m)
-architecture_dir="${architecture}-linux"
 
 while true; do
     case "$1" in
@@ -41,15 +37,34 @@ while true; do
         ;;
     esac
 done
-get_version_dir "atvc_version_dir" "$install_path/$version_dir/atvc/version.info"
 
-if [ -z "$atvc_version_dir" ]; then
-    # before remove the oppkernel, remove the softlinks
-    logandprint "[INFO]: Start remove atvc softlinks."
-    remove_atvc_include_softlink ${install_path}/${version_dir}
-    if [ $? -ne 0 ]; then
-        logandprint "[WARNING]: Remove atvc softlinks failed, some softlinks may not exist."
-    else
-        logandprint "[INFO]: Remove atvc softlinks successfully."
+get_arch_name() {
+    local pkg_dir="$1"
+    local scene_file="$pkg_dir/scene.info"
+    grep '^arch=' $scene_file | cut -d"=" -f2
+}
+
+create_stub_softlink() {
+    local stub_dir="$1"
+    if [ ! -d "$stub_dir" ]; then
+        return
     fi
-fi
+    local arch_name="$2"
+    local pwdbak="$(pwd)"
+    cd $stub_dir && [ -d "$arch_name" ] && for so_file in $(find "$arch_name" -type f -o -type l); do
+        ln -sf "$so_file" "$(basename $so_file)"
+    done
+    [ -d "linux/x86_64" ] && ln -snf "linux/x86_64" "x86_64"
+    [ -d "linux/aarch64" ] && ln -snf "linux/aarch64" "aarch64"
+    cd $pwdbak
+}
+
+do_create_stub_softlink() {
+    local arch_name="$(get_arch_name $install_path/$version_dir/share/info/atvc)"
+    local arch_linux_path="$install_path/$latest_dir/$arch_name-linux"
+    if [ ! -e "$arch_linux_path" ] || [ -L "$arch_linux_path" ]; then
+        return
+    fi
+}
+
+do_create_stub_softlink

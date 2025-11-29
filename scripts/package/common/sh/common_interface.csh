@@ -9,7 +9,6 @@
 # See LICENSE in the root of the software repository for the full text of the License.
 # -----------------------------------------------------------------------------------------------------------
 
-
 set func_name = "$1"
 switch ( "$func_name" )
     case "mk_custom_path":

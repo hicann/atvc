@@ -7,49 +7,50 @@
        INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE.
        See LICENSE in the root of the software repository for the full text of the License.
 -->
-<config name="atvc" copy_type="delivery" src_path="" dst_path="atvc" install_type="all" install_mod="550" install_own="$username:$usergroup">
+
+<config name="atvc" copy_type="delivery" src_path="" dst_path="atvc" install_path="share/info/atvc"
+        install_own="$username:$usergroup" install_mod="750" install_type="all">
     <package_info>
         <product_name>cann</product_name>
         <func_name>atvc</func_name>
         <suffix>run</suffix>
-        <install_script>atvc/script/install.sh</install_script>
-        <help>atvc/script/help.info</help>
-        <cleanup>atvc/script/cleanup.sh</cleanup>
-        <parallel>true</parallel>
+        <install_script>scripts/package/atvc/scripts/install.sh</install_script>
+        <help>scripts/package/atvc/scripts/help.info</help>
+        <version>scripts/package/atvc/version.xml</version>
         <check_features>true</check_features>
     </package_info>
 
-    <generate_info value="atvc_version.h" dst_path="atvc" install_path="$(TARGET_ENV)/include/version" install_mod="440" install_type="devel" generator="version_header">
-       <ATVC_VERSION>$(VERSION_DIR)</ATVC_VERSION>
-       <ATVC_TIMESTAMP>$(TIMESTAMP_NO)</ATVC_TIMESTAMP>
-    </generate_info>
-
-    <generate_info value="scene.info" dst_path="atvc" install_path="atvc" install_mod="640">
+    <generate_info value="scene.info" dst_path="atvc" install_path="share/info/atvc" install_mod="440" feature="comm">
         <os>$(OS_NAME)</os>
         <os_version>$(OS_VER)</os_version>
         <arch>$(ARCH)</arch>
     </generate_info>
-
-    <file_info value="atvc_script" copy_type="source" src_path="" dst_path="atvc" install_path="atvc">
-        <file value="script" entity="true"/>
-        <file value="bin" entity="true"/>
-        <file value="version.info" dst_path="."/>
-    </file_info>
 
     <block_info dependtree="false" dst_path="atvc" block_conf_path="ascend">
         <block name="EngineeringCommon"/>
         <block name="EngineeringFiles"/>
     </block_info>
 
-    <dir_info value="atvc_dir" install_path="" install_mod="550">
+    <dir_info value="atvc_dir" install_path="" install_mod="750">
+        <path value="share"/>
+        <path value="share/info"/>
         <path value="$(TARGET_ENV)/ascendc"/>
         <path value="$(TARGET_ENV)/ascendc/act"/>
-        <path value="$(TARGET_ENV)/asc"/>
-        <path value="$(TARGET_ENV)/asc/atvc"/>
-        <path value="$(TARGET_ENV)/asc/atvc/include"/>
+        <path value="$(TARGET_ENV)/include"/>
+        <path value="$(TARGET_ENV)/include/atvc"/>
     </dir_info>
 
-    <file_info value="atvc_include" copy_type="delivery" src_path="" dst_path="atvc" install_path="$(TARGET_ENV)/asc/atvc" install_type="all">
-        <file value="include" install_mod="550" entity="true" install_softlink="$(TARGET_ENV)/ascendc/act/include"/>
+    <file_info copy_type="delivery" src_path="atvc" dst_path="atvc" install_path="share/info/atvc" install_type="all">
+        <file value="script" install_mod="550" entity="true"/>
+        <file value="bin" install_mod="550" entity="true"/>
+        <file value="version.info" install_mod="550" entity="true"/>
+        <file value="scene.info" install_mod="550" entity="true"/>
+    </file_info>
+    <file_info copy_type="delivery" src_path="atvc/script" dst_path="atvc/script" install_path="share/info/atvc" install_type="all">
+        <file value="filelist.csv" install_mod="550" entity="true"/>
+    </file_info>
+
+    <file_info value="atvc_include" copy_type="delivery" src_path="" dst_path="atvc" install_path="$(TARGET_ENV)/include/atvc" install_type="all">
+        <file value="include" install_softlink="$(TARGET_ENV)/ascendc/act/include" install_mod="550" entity="true"/>
     </file_info>
 </config>
