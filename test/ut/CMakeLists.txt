@@ -32,6 +32,7 @@ set(ASCEND_DEP_LIB_DIR
 set(ATVC_TEST_HEADER_FILES
         ${UT_PATH}/common
         ${ATVC_DIR}
+        ${ATVC_DIR}/include
         ${GTEST_INCLUDE}
         ${C_SEC_INCLUDE}
         ${ASCENDC_SYS_DIR}/tikcpp/tikcfw
@@ -47,6 +48,13 @@ set(ATVC_TEST_ascend910b_HEADER_FILES
         ${ATVC_DIR}
 )
 
+set(ATVC_TEST_ascend910b_CASE_SRC_FILES
+        ${CMAKE_CURRENT_SOURCE_DIR}/block/test_add.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/block/test_broadcast_to.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/block/test_reduce_sum.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/block/test_add_with_broadcast.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/block/test_addcmul.cpp
+)
 
 set(ATVC_TEST_ascend910b_TILING_CASE_SRC_FILES
         ${CMAKE_CURRENT_SOURCE_DIR}/tiling/test_atvc_tiling.cpp
@@ -55,8 +63,9 @@ set(ATVC_TEST_ascend910b_TILING_CASE_SRC_FILES
 foreach(product_type ${PRODUCT_TYPE_LIST})
     add_executable(atvc_${product_type}_ut
             ${UT_PATH}/main_global.cpp
-            $<$<STREQUAL:${product_type},ascend910b>:${UT_PATH}/common/k3_pvwrap.cpp>
+            $<$<STREQUAL:${product_type},ascend910b>:${UT_PATH}/common/platform_stub.cpp>
             ${ATVC_TEST_${product_type}_CASE_SRC_FILES}
+            ${ATVC_TEST_${product_type}_TILING_CASE_SRC_FILES}
     )
 
     # add soc version flags
