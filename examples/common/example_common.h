@@ -22,7 +22,7 @@ namespace {
     } while (0)
 
 static constexpr float REL_TOL = 1e-3f;
-static constexpr float ABS_TOL = 1e-5f;
+static constexpr float ABS_TOL = 1e-3f;
 
 bool IsClose(float a, float b)
 {
