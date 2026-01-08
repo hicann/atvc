@@ -24,7 +24,7 @@ else
 fi
 source $_ASCEND_INSTALL_PATH/bin/setenv.bash
 export DDK_PATH=$_ASCEND_INSTALL_PATH
-export NPU_HOST_LIB=$_ASCEND_INSTALL_PATH/$(arch)-$(uname -s | tr '[:upper:]' '[:lower:]')/devlib
+export NPU_HOST_LIB=$_ASCEND_INSTALL_PATH/$(arch)-$(uname -s | tr '[:upper:]' '[:lower:]')/lib64
 
 set -e
 rm -rf build
