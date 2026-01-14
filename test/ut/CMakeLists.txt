@@ -22,10 +22,10 @@ add_compile_definitions(__CCE_KT_TEST__=1 ASCENDC_CPU_DEBUG=1 ASCENDC_DUMP=0)
 include(${ATVC_DIR}/cmake/intf_pub_llt.cmake)
 include(${ATVC_DIR}/cmake/third_party/gtest.cmake)
 
-set(ASCENDC_SYS_DIR ${ASCEND_DIR}/${CMAKE_SYSTEM_PROCESSOR}-linux)
+set(ASCENDC_SYS_DIR ${ASCEND_DIR}/${CMAKE_SYSTEM_PROCESSOR}-linux/)
 
 set(ASCEND_DEP_LIB_DIR
-        ${ASCENDC_SYS_DIR}/lib64/
+        ${ASCEND_DIR}/lib64/
         ${ASCEND_DIR}/tools/tikicpulib/lib/
 )
 
@@ -35,13 +35,13 @@ set(ATVC_TEST_HEADER_FILES
         ${ATVC_DIR}/include
         ${GTEST_INCLUDE}
         ${C_SEC_INCLUDE}
-        ${ASCENDC_SYS_DIR}/tikcpp/tikcfw
-        ${ASCENDC_SYS_DIR}/tikcpp/tikcfw/interface
-        ${ASCENDC_SYS_DIR}/tikcpp/tikcfw/impl
-        ${ASCENDC_SYS_DIR}/include
-        ${ASCENDC_SYS_DIR}/include/base
+        ${ASCENDC_SYS_DIR}/asc/
+        ${ASCENDC_SYS_DIR}/asc/include
+        ${ASCENDC_SYS_DIR}/asc/include/adv_api
+        ${ASCENDC_SYS_DIR}/asc/include/basic_api
+        ${ASCENDC_SYS_DIR}/asc/impl
+        ${ASCENDC_SYS_DIR}/asc/impl/basic_api
         ${ASCEND_DIR}/tools/tikicpulib/lib/include
-        ${ASCEND_DIR}/include
 )
 
 set(ATVC_TEST_ascend910b_HEADER_FILES
@@ -139,7 +139,7 @@ foreach(product_type ${PRODUCT_TYPE_LIST})
             add_custom_command(
                     TARGET atvc_${product_type}_ut POST_BUILD
                     COMMAND
-                    COMMAND bash -c "source ${ASCEND_DIR}/bin/setenv.bash && \
+                    COMMAND bash -c "source ${ASCEND_DIR}/set_env.sh && \
         ${PRELOAD} ASAN_OPTIONS=detect_leaks=0 ./atvc_${product_type}_ut"
                     VERBATIM
                     COMMENT "Run atvc utest with asan"
@@ -147,7 +147,7 @@ foreach(product_type ${PRODUCT_TYPE_LIST})
         else()
             add_custom_command(
                     TARGET atvc_${product_type}_ut POST_BUILD
-                    COMMAND bash -c "source ${ASCEND_DIR}/bin/setenv.bash && ./atvc_${product_type}_ut"
+                    COMMAND bash -c "source ${ASCEND_DIR}/set_env.sh && ./atvc_${product_type}_ut"
                     VERBATIM
                     COMMENT "Run atvc utest"
             )
