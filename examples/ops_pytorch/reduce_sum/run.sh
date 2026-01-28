@@ -41,7 +41,7 @@ else
 fi
 
 bisheng -x cce pytorch_ascendc_extension.cpp \
-    -D_GLIBCXX_USE_CXX11_ABI=0  \
+    -D_GLIBCXX_USE_CXX11_ABI=1  \
     -I${torch_location}/include   \
     -I${torch_location}/include/torch/csrc/api/include   \
     -I${python_include}   \

@@ -41,7 +41,9 @@ z = x + y
 ### 1. 获取源码包及环境配置
 编译运行此样例前，请参考[准备：获取样例代码](../README.md#codeready)获取源码包及环境变量的准备。
 ### 2. 安装PyTorch环境
-参考[torch的安装](https://gitee.com/ascend/pytorch)进行安装torch、torch_npu环境
+参考[torch的安装](https://gitcode.com/Ascend/pytorch)进行安装torch、torch_npu环境，torch、torch_npu版本支持2.7.1及以上。
+下载对应`cann-hccl_${cann_version}_linux-${arch}.run`包，下载链接为[hccl x86_64包](https://mirror-centralrepo.devcloud.cn-north-4.huaweicloud.com/artifactory/cann-run-release/software/9.0.0/20260127000324761/x86_64/ops/cann-hccl_9.0.0_linux-x86_64.run)、[hccl aarch64包](https://mirror-centralrepo.devcloud.cn-north-4.huaweicloud.com/artifactory/cann-run-release/software/9.0.0/20260127000324761/aarch64/ops/cann-hccl_9.0.0_linux-aarch64.run)。
+下载对应`Ascend-cann-A3-ops_${cann_version}_linux-${arch}.run`包，下载链接为[ops x86_64包](https://mirror-centralrepo.devcloud.cn-north-4.huaweicloud.com/artifactory/cann-run-release/software/9.0.0/20260127000324761/x86_64/Ascend-cann-A3-ops_9.0.0_linux-x86_64.run)、[ops aarch64包](https://mirror-centralrepo.devcloud.cn-north-4.huaweicloud.com/artifactory/cann-run-release/software/9.0.0/20260127000324761/aarch64/Ascend-cann-A3-ops_9.0.0_linux-aarch64.run)。
 
 ### 3. 基于ATVC编写PyTorch算子的实现<a name="operatorcompile"></a>
   - 算子kernel侧实现
@@ -112,7 +114,7 @@ z = x + y
 
     # 使用bisheng进行编译PyTorch算子
     bisheng -x cce pytorch_ascendc_extension.cpp \
-    -D_GLIBCXX_USE_CXX11_ABI=0  \
+    -D_GLIBCXX_USE_CXX11_ABI=1  \
     -I${torch_location}/include   \
     -I${torch_location}/include/torch/csrc/api/include   \
     -I${python_include}   \
