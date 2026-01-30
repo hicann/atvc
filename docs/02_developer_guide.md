@@ -22,24 +22,24 @@ ATVC将Vector算子开发流程中的可定制化模块抽象出了Host层和Ker
 
 ## ATVC当前的模板提供的接口/类列表  
 
-+ ElementWise模板
++ ElementWise模板  
     | API层级 | API类或接口名称 |
     |------|------|
     |Host|CalcEleWiseTiling |
     |Kernel|EleWiseOpTemplate|
 
-+ Reduce模板API
++ Reduce模板API  
     | API层级 | API类或接口名称 |
     |------|------|
     |Host|CalcReduceTiling |
     |Kernel|ReduceOpTemplate|
 
-+ Broadcast模板API
++ Broadcast模板API  
     | API层级 | API类或接口名称 |
     |------|------|
     |Host|CalcBroadcastTiling |
     |Kernel|BroadcastOpTemplate |
-+ Pool模板API
++ Pool模板API  
     | API层级 | API类或接口名称 |
     |------|------|
     |Host|CalcPoolTiling |

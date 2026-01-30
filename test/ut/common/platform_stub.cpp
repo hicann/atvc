@@ -38,7 +38,7 @@ static const char *g_core_num_aic = "24";
 static const char *g_core_num_aiv = "48";
 static const char *g_core_num_cub = "24";
 static const char *g_core_type_list = "AICore,VectorCore";
-static const char *g_chip_version = "Ascend910_95";
+static const char *g_chip_version = "Ascend950";
 static uint32_t g_core_num = 48;
 #else
 static const char *g_core_num_aic = "32";
@@ -382,7 +382,7 @@ SocVersion PlatformAscendC::GetSocVersion(void) const {
         {"Ascend910", SocVersion::ASCEND910},
         {"Ascend910B", SocVersion::ASCEND910B},
         {"Ascend910_93", SocVersion::ASCEND910B},
-        {"Ascend910_95", SocVersion::ASCEND910_95},
+        {"Ascend950", SocVersion::ASCEND950},
         {"Ascend310B", SocVersion::ASCEND310B},
         {"MC62CM12A", SocVersion::MC62CM12A},
     };
