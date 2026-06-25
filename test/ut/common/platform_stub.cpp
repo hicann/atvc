@@ -384,7 +384,7 @@ SocVersion PlatformAscendC::GetSocVersion(void) const {
         {"Ascend910_93", SocVersion::ASCEND910B},
         {"Ascend950", SocVersion::ASCEND950},
         {"Ascend310B", SocVersion::ASCEND310B},
-        {"MC62CM12A", SocVersion::MC62CM12A},
+        {"MC62", SocVersion::MC62},
     };
     auto it = convertMap.find(socVersionStr);
     if (it != convertMap.end()) {
