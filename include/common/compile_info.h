@@ -10,6 +10,7 @@
 
 #ifndef ATVC_COMPILE_INFO_H
 #define ATVC_COMPILE_INFO_H
+#include <cstdio>
 #include <map>
 #include "tiling/platform/platform_ascendc.h"
 
