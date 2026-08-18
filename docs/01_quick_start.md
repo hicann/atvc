@@ -104,7 +104,7 @@ chmod +x cann-atvc_${version}_linux-${arch}.run
 
 ## UT测试（可选）
 
-在开源仓根目录执行下列命令之一，将依次批跑tests目录下的用例，得到结果日志，用于看护编译是否正常。
+在开源仓根目录执行下列命令之一，将依次批跑test目录下的用例，得到结果日志，用于看护编译是否正常。
 
 ```bash
 bash build.sh -u
