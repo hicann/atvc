@@ -16,6 +16,10 @@ ops_pytorch/
 └── reduce_sum  // ReduceSum算子的PyTorch调用样例
 ```
 
+## 准备：获取样例代码<a name="codeready"></a>
+
+编译运行样例前，请参考[环境准备](../../docs/01_quick_start.md#环境准备)完成CANN软件包安装及环境变量配置，并参考[源码下载](../../docs/01_quick_start.md#源码下载)获取ATVC源码。
+
 ## 开发步骤
 
   不同的算子类型可参考[快速入门](../../docs/01_quick_start.md)中的模版选择模版进行选择，用户在此处通过`<<<>>>`的方式调用核函数，更多ATVC的用法可参考ATVC的[开发指南](../../docs/02_developer_guide.md)。

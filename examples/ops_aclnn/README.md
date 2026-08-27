@@ -20,6 +20,10 @@ ops_aclnn/
 └── reduce_sum    // ReduceSum算子的自定义算子工程样例
 ```
 
+## 准备：获取样例代码<a name="codeready"></a>
+
+编译运行样例前，请参考[环境准备](../../docs/01_quick_start.md#环境准备)完成CANN软件包安装及环境变量配置，并参考[源码下载](../../docs/01_quick_start.md#源码下载)获取ATVC源码。
+
 ## 开发步骤
 ### 步骤1. 生成自定义工程基础目录及文件
   参考[msopgen](https://www.hiascend.com/document/detail/zh/mindstudio/81RC1/ODtools/Operatordevelopmenttools/atlasopdev_16_0021.html)创建算子工程的基础文件。 
