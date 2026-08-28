@@ -57,7 +57,7 @@ bool CheckPoolHyperParam(const PoolTilingHyperParam &hyperParam)
             "ubSizeLimitThreshold(%f) must be in [0.5, 0.96].\n", hyperParam.ubSizeLimitThreshold);
         return false;
     }
-    if(hyperParam.nBufferNum > MAX_BUF_NUM || hyperParam.singleCoreBaseLine < MIN_BUF_NUM) {
+    if(hyperParam.nBufferNum > MAX_BUF_NUM || hyperParam.nBufferNum < MIN_BUF_NUM) {
         printf("[ERROR]: [ATVC][Pool] Tiling hyperParam is invalid: nBufferNum(%u) must be in [1, 2].\n",
             hyperParam.nBufferNum);
         return false;
