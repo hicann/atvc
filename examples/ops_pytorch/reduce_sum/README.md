@@ -169,7 +169,7 @@ ReduceSum是对输入tensor的指定轴进行规约累加的计算并输出结�
     ```
   - 调用脚本，生成PyTorch算子，并运行测试用例 
     ```bash
-    cd ./ops_templates/atvc/examples/ops_pytorch/reduce_sum
+    cd ./examples/ops_pytorch/reduce_sum
     bash run.sh
     ...
     OK

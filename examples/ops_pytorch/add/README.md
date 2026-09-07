@@ -141,7 +141,7 @@ z = x + y
     ```
   - 调用脚本，生成PyTorch算子，并运行测试用例 
       ```bash
-      cd ./ops_templates/atvc/examples/ops_pytorch/add
+      cd ./examples/ops_pytorch/add
       bash run.sh
       ...
       OK

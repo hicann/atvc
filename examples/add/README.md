@@ -43,8 +43,8 @@
 | [add.cpp](./add.cpp) | Add算子代码实现以及调用样例               |
 
 ## 算子运行
-在ascendc-api-adv代码仓目录下执行：
+在atvc代码仓目录下执行：
 ```bash
-cd ./ops_templates/atvc/examples
+cd ./examples
 bash run_examples.sh add
 ```

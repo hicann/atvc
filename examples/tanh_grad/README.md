@@ -44,7 +44,7 @@
 ## 算子基本功能验证
 执行命令如下：
 ```bash
-cd ./ops_templates/atvc/examples
+cd ./examples
 bash run_examples.sh tanh_grad
 ```
 
@@ -54,14 +54,14 @@ bash run_examples.sh tanh_grad
 - 使用`--run-mode=debug_print`进行DFX信息打印：
 执行命令如下：
 ```bash
-cd ./ops_templates/atvc/examples
+cd ./examples
 bash run_examples.sh tanh_grad --run-mode=debug_print
 ```
 
 - 使用`--run-mode=profiling`开启Profiling，获取性能数据：
 执行命令如下：
 ```bash
-cd ./ops_templates/atvc/examples
+cd ./examples
 bash run_examples.sh tanh_grad --run-mode=profiling
 ```
 

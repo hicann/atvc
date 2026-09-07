@@ -50,8 +50,8 @@ $$
 | [post_compute_relu_with_reduce_sum.h](./post_compute_relu_with_reduce_sum.h) | 后置Elementwise计算              |
 
 ## 算子运行
-在ascendc-api-adv代码仓目录下执行：
+在atvc代码仓目录下执行：
 ```bash
-cd ./ops_templates/atvc/examples
+cd ./examples
 bash run_examples.sh relu_with_reduce_sum
 ```

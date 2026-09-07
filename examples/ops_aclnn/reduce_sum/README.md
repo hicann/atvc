@@ -64,7 +64,7 @@ CANN软件包中提供了工程创建工具msOpGen，ReduceSumCustom算子工程
   - 切换到msOpGen脚本install.sh所在目录
     ```bash
     # 若开发者以git命令行方式clone了master分支代码，并切换目录
-    cd ./ops_templates/atvc/examples/ops_aclnn/reduce_sum
+    cd ./examples/ops_aclnn/reduce_sum
     ```
 
   - 调用脚本，生成自定义算子工程，复制host和kernel实现并编译算子

@@ -52,9 +52,9 @@ y4 = min(abs(((x2 + x5 + x8) - (x0 + x3 + x6)) / 3), 255)
 | [edge.cpp](./edge.cpp) | 自定义Edge算子代码实现以及调用样例               |
 
 ## 算子运行
-在ascendc-api-adv代码仓目录下执行：
+在atvc代码仓目录下执行：
 ```bash
-cd ./ops_templates/atvc/examples
+cd ./examples
 bash run_examples.sh edge
 ```
 当前`PoolOpTemplate`暂不支持ATVC调试调优功能，相关功能待后续补充。
