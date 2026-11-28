@@ -33,7 +33,7 @@ __aicore__ inline bool CheckPoolParam(const T* param)
 {
     auto *tilingData = &param->tilingData;
     if (tilingData->blockNum < AscendC::GetBlockIdx() + 1) {
-        ATVC::Kernel::DebugPrintf("[ERROR]: [ATVC][Pool] Tiling data[blockNum = %u] is invalid,"
+        ATVC::Kernel::DebugPrintf("[ERROR]: [ATVC][Pool] Tiling data[blockNum = %u] is invalid, "
                                   "it must be larger than current block number.\n", tilingData->blockNum);
         return false;
     }

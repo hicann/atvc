@@ -256,8 +256,9 @@ public:
         copyInParams.blockLen = view.burstLen * sizeof(EleT);                              // unit Byte
         copyInParams.srcStride = (view.axis[0].srcStride - view.burstLen) * sizeof(EleT);  // unit Byte
         copyInParams.dstStride = (view.axis[0].dstStride - view.burstLen) * sizeof(EleT) / BLOCK_SIZE_BYTE;  // unit block(32byte)
-            ATVC::Kernel::DebugPrintf("[INFO]: [ATVC][Reduce][CopyIn] Padding flag is %d, padding value is %d, block length is %u,"
-            " repeat count is %u.\n", isPadding, paddingValue, copyInParams.blockLen, copyInParams.blockCount);
+            ATVC::Kernel::DebugPrintf("[INFO]: [ATVC][Reduce][CopyIn] Padding flag is %d, padding value is %d,"
+            " block length is %u (byte), repeat count is %u.\n",
+            isPadding, paddingValue, copyInParams.blockLen, copyInParams.blockCount);
         bufPool_.SyncTensor(ubTensor);
 
         const int32_t repeats[CONST6] = {static_cast<int32_t>(view.axis[CONST1].repeat),
@@ -348,8 +349,8 @@ public:
         AscendC::DataCopyExtParams copyOutParams = {1, 1, 0, 0, 0};
         copyOutParams.blockCount = view.axis[0].repeat;
         copyOutParams.blockLen = view.burstLen * sizeof(T);
-        ATVC::Kernel::DebugPrintf("[INFO]: [ATVC][Reduce][CopyOut] Block length is %u, repeat count is %u.\n",
-                                  view.burstLen, copyOutParams.blockCount);
+        ATVC::Kernel::DebugPrintf("[INFO]: [ATVC][Reduce][CopyOut] Block length is %u (byte), repeat count is %u.\n",
+                                  copyOutParams.blockLen, copyOutParams.blockCount);
         AscendC::LocalTensor<DataType> outputLocal = tempBuf_[tmpBufOffset].template ReinterpretCast<DataType>();
         if constexpr (AscendC::IsSameType<PromoteDataType, DataType>::value) {
 

@@ -66,7 +66,7 @@ __aicore__ inline void PrintReduceParam(const T* param)
     ATVC::Kernel::DebugPrintf("[INFO]: [ATVC][Reduce] Tiling data: basicBlock = %lu\n", param->tilingData.basicBlock);
     ATVC::Kernel::DebugPrintf("[INFO]: [ATVC][Reduce] Tiling data: coreNum = %d\n", param->tilingData.coreNum);
     ATVC::Kernel::DebugPrintf("[INFO]: [ATVC][Reduce] Tiling data: nBufferNum = %d\n", param->nBufferNum);
-    ATVC::Kernel::DebugPrintf("[INFO]: [ATVC][Reduce] Work space size is %u\n", param->workspaceSize);
+    ATVC::Kernel::DebugPrintf("[INFO]: [ATVC][Reduce] Work space size is %u (byte)\n", param->workspaceSize);
     ATVC::Kernel::DebugPrintf("[INFO]: [ATVC][Reduce] policy = (%d, %d, %d)\n",
         SelectReducePolicy.patternID, SelectReducePolicy.loopARCount, SelectReducePolicy.loopInnerARCount);
     return;

@@ -36,7 +36,7 @@ inline bool CheckReduceHyperParam(const ATVC::Host::ReduceTilingHyperParam &hype
     constexpr float MAX_THRESH_HOLD = 0.95f;
     if(hyperParam.basicBlock > MAX_BASE_LINE || hyperParam.basicBlock < MIN_BASE_LINE) {
         printf("[ERROR]: [ATVC][Reduce] Tiling hyperParam is invalid: "
-            "basicBlock(%u) must be in [48 * 1024, 54 * 1024].\n", hyperParam.basicBlock);
+            "basicBlock(%u) must be in [48 * 1024, 54 * 1024] bytes.\n", hyperParam.basicBlock);
         return false;
     }
     if(hyperParam.maxInnerA > MAX_INNER_A || hyperParam.maxInnerA < MIN_INNER_A) {

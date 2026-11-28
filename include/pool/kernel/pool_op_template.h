@@ -165,7 +165,7 @@ private:
         curTileScope_.tilePadding.down = TILE_PADDING.down < remainingHeight ? TILE_PADDING.down : remainingHeight;
 
         ATVC::Kernel::DebugPrintf(
-            "[INFO]:[ATVC][Pool]Curent offset.up: %u .left: %u  padding: up: %u left: %u right: %u down: %u\n",
+            "[INFO]:[ATVC][Pool]Current offset.up: %u .left: %u  padding: up: %u left: %u right: %u down: %u\n",
             curTileScope_.offset.up,
             curTileScope_.offset.left,
             curTileScope_.tilePadding.up,

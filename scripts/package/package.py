@@ -70,7 +70,7 @@ def get_compress_cmd(delivery_dir: str,
         if pkg_args.independent_pkg:
             exec_pack_cmd(delivery_dir, pack_cmd, package_name.getvalue())
     else:
-        CommLog.cilog_error("the repack type '%s' is not support!", suffix)
+        CommLog.cilog_error("the repack type '%s' is not supported!", suffix)
         sys.exit(FAIL)
     try:
         makeself_dir = os.path.join(build_dir, "makeself.txt")
@@ -373,10 +373,12 @@ def checksum_value(limit_value, release_dir):
         try:
             max_value = int(limit_value[4])
         except ValueError:
-            CommLog.cilog_error("{0} configuration is not standard., Please check limit.csv.".format(path))
+            CommLog.cilog_error("{0} configuration value '{1}' is not an integer, Please check limit.csv."
+                                .format(path, limit_value[4]))
             return True
     else:
-        CommLog.cilog_error("{0} configuration is less than four, Please check limit.csv.".format(path))
+        CommLog.cilog_error("{0} configuration has {1} columns, less than the required seven, Please check limit.csv."
+                            .format(path, len(limit_value)))
         return True
     if not os.path.exists(path):
         CommLog.cilog_warning("{0} doesn't exist, Please check limit.csv.".format(path))
@@ -394,7 +396,7 @@ def checksum_value(limit_value, release_dir):
     if size == 0:
         size = os.path.getsize(path)
     if size > max_value * 1024:
-        CommLog.cilog_error(f"\n{path} size {size} bytes exceeds maximum {max_value * 1024} bytes")
+        CommLog.cilog_error(f"{path} size {size} bytes exceeds maximum {max_value * 1024} bytes")
         return False
     return True
 
@@ -579,7 +581,7 @@ def main(pkg_name='', xml_file='', main_args=None):
         delivery_dir = os.path.join(main_args.delivery_dir, "_CPack_Packages/makeself_staging")
         build_dir = main_args.delivery_dir
     if not os.path.exists(delivery_dir):
-        CommLog.cilog_error(f"delivery dir not exist: {delivery_dir}")
+        CommLog.cilog_error(f"delivery dir does not exist: {delivery_dir}")
         return FAIL
 
     config_relative_path = get_pkg_xml_relative_path(main_args)
@@ -591,7 +593,7 @@ def main(pkg_name='', xml_file='', main_args=None):
             pkg_xml_file, delivery_dir, parse_option, main_args
         )
     except ContainAsteriskError as ex:
-        CommLog.cilog_error(f"Value contain '*' in {config_relative_path}. value is '{ex.value}'.")
+        CommLog.cilog_error(f"Value contains '*' in {config_relative_path}. value is '{ex.value}'.")
         return FAIL
 
     if pkg_name in ['driver', 'firmware']:
@@ -705,7 +707,7 @@ if __name__ == "__main__":
             args.build_type = args.build_type.lower()
         status = main(args.pkg_name, args.xml_file, main_args=args)
     except Exception as e:
-        CommLog.cilog_error("exception is occurred (%s)!", e)
+        CommLog.cilog_error("exception occurred (%s)!", e)
         CommLog.cilog_info("%s", traceback.format_exc())
         status = FAIL
     sys.exit(status)

@@ -119,7 +119,8 @@ bool CalcPoolTiling(const ATVC::Layout2Dim &totalLayout, const ATVC::Layout2Dim 
     uint64_t tileNumW = (static_cast<uint64_t>(totalW) + tileW - 1) / tileW;
     uint64_t tileNumWide = tileNumH * tileNumW;
     if (tileNumWide > std::numeric_limits<uint32_t>::max()) {
-        printf("[ERROR]: [ATVC][Pool] Tiling Error: tile count exceeds the supported range.\n");
+        printf("[ERROR]: [ATVC][Pool] Tiling Error: tile count(%lu) exceeds the supported range, "
+            "the maximum is %u.\n", tileNumWide, std::numeric_limits<uint32_t>::max());
         return false;
     }
     uint32_t tileNum = static_cast<uint32_t>(tileNumWide);

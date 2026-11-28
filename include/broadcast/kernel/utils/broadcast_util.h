@@ -57,7 +57,7 @@ __aicore__ inline bool CheckBroadcastParam(const T* param)
 {
     auto *tilingData = &param->tilingData;
     if (tilingData->coreNum < AscendC::GetBlockIdx() + 1 ) {
-        ATVC::Kernel::DebugPrintf("[ERROR]: [ATVC][Broadcast] Tiling data[coreNum = %d] is invalid,"
+        ATVC::Kernel::DebugPrintf("[ERROR]: [ATVC][Broadcast] Tiling data[coreNum = %d] is invalid, "
                                   "it must be larger than current block number.\n", tilingData->coreNum);
         return false;
     }

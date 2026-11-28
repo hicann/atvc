@@ -75,13 +75,14 @@ inline int32_t IsAxesValid(const std::vector<int64_t> &shape, const std::vector<
     size_t shapeSize = shape.size();
     size_t axesSize = axes.size();
     if (axesSize > shapeSize) {
-        printf("[ERROR]: [ATVC][Reduce] Axis size is greater than shape size.\n");
+        printf("[ERROR]: [ATVC][Reduce] Axis size(%zu) is greater than shape size(%zu).\n", axesSize, shapeSize);
         return -1;
     };
 
     for (size_t i = 0; i < axesSize; i++) {
         if (axes[i] >= static_cast<int64_t>(shapeSize) || axes[i] < 0) {
-            printf("[ERROR]: [ATVC][Reduce] Axis size incorrect.\n");
+            printf("[ERROR]: [ATVC][Reduce] Axis value(%ld) at index %zu is out of range [0, %zu).\n",
+                axes[i], i, shapeSize);
             return -1;
         };
     }

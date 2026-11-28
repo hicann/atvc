@@ -136,16 +136,19 @@ private:
         size_t sizeIn = shapeIn.size();
         size_t sizeOut = shapeOut.size();
         if (sizeOut != sizeIn) {
-            printf("[ERROR]: [ATVC][Broadcast] input dim in is not equal to output dim!\n");
+            printf("[ERROR]: [ATVC][Broadcast] input dim in is not equal to output dim! "
+                "in dim: %zu, out dim: %zu\n", sizeIn, sizeOut);
             return false;
         };
 
         for (size_t i = 0; i < sizeIn; i++) {
             if (shapeOut[i] != shapeIn[i] && shapeIn[i] != 1) {
-                printf("[ERROR]: [ATVC][Broadcast] Input shape in broadcast dim should be 1\n");
+                printf("[ERROR]: [ATVC][Broadcast] Input shape in broadcast dim should be 1, "
+                    "dim index: %zu, input shape: %ld, output shape: %ld\n", i, shapeIn[i], shapeOut[i]);
                 return false;
             } else if (shapeIn[i] <= 0) {
-                printf("[ERROR]: [ATVC][Broadcast] Input and output shape should be more than 0\n");
+                printf("[ERROR]: [ATVC][Broadcast] Input and output shape should be more than 0, "
+                    "dim index: %zu, input shape: %ld\n", i, shapeIn[i]);
                 return false;
             }
         }
@@ -191,7 +194,8 @@ private:
             }
         }
         if (shapeIn.size() != 2U && shapeOut.size() != 2U) {
-            printf("[ERROR]: [ATVC][Broadcast] Shape after eliminate is not 2 dim!\n");
+            printf("[ERROR]: [ATVC][Broadcast] Shape after eliminate is not 2 dim! "
+                "input dim: %zu, output dim: %zu\n", shapeIn.size(), shapeOut.size());
             return false;
         }
         if (shapeIn[0] != shapeOut[0]) {
@@ -212,8 +216,8 @@ private:
             case ATVC::CONST3:
                 return ComputeTiling<ATVC::BroadcastPattern::ABA>(shapeIn, shapeOut);
             default:
-                printf("[ERROR]: [ATVC][Broadcast] Compute tiling error because of invalid input shape size[%d]\n",
-                    shapeSize);
+                printf("[ERROR]: [ATVC][Broadcast] Compute tiling error because of invalid input shape size[%d], "
+                    "valid range is [1, 3]\n", shapeSize);
                 return false;
         }
         return false;

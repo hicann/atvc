@@ -39,20 +39,20 @@ __aicore__ inline bool CheckEleWiseParam(const T *param)
 {
     auto *tilingData = &param->tilingData;
     if (tilingData->blockNum < AscendC::GetBlockIdx() + 1) {
-        ATVC::Kernel::DebugPrintf("[ERROR]: [ATVC][EleWise] Tiling data[blockNum = %u] is invalid,"
+        ATVC::Kernel::DebugPrintf("[ERROR]: [ATVC][EleWise] Tiling data[blockNum = %u] is invalid, "
                                   "it must be larger than current block number.\n",
             tilingData->blockNum);
         return false;
     }
     if (tilingData->tailElemCnt > tilingData->tiledCnt) {
-        ATVC::Kernel::DebugPrintf("[ERROR]: [ATVC][EleWise] Tiling data[tailElemCnt = %u] is invalid,"
+        ATVC::Kernel::DebugPrintf("[ERROR]: [ATVC][EleWise] Tiling data[tailElemCnt = %u] is invalid, "
                                   "it must be smaller than tiledCnt(%u).\n",
             tilingData->tailElemCnt,
             tilingData->tiledCnt);
         return false;
     }
     if (tilingData->tailBlockCnt > tilingData->blockNum) {
-        ATVC::Kernel::DebugPrintf("[ERROR]: [ATVC][EleWise] Tiling data[tailBlockCnt = %u] is invalid,"
+        ATVC::Kernel::DebugPrintf("[ERROR]: [ATVC][EleWise] Tiling data[tailBlockCnt = %u] is invalid, "
                                   "it must be smaller than blockNum(%u).\n",
             tilingData->tailBlockCnt,
             tilingData->blockNum);

@@ -104,8 +104,8 @@ def get_compress_tool() -> str:
         path = shutil.which(tool)
         if path:
             return "--" + tool
-    CommLog.cilog_error("The system does not come with a compression tool pre-installed."
-                        "Please ensure at least one of the folllowing compression tools is available: %s", tools)
+    CommLog.cilog_error("The system does not come with a compression tool pre-installed. "
+                        "Please ensure at least one of the following compression tools is available: %s", tools)
     return ""
 
 
